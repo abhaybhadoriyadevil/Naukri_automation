@@ -86,7 +86,8 @@ def login_naukri(driver) -> bool:
             return True
 
     except TimeoutException as e:
-        logger.error(f"❌ Naukri login timed out: {e}")
+        driver.save_screenshot("naukri_login_timeout.png")
+        logger.error(f"❌ Naukri login timed out: {e} (saved naukri_login_timeout.png)")
         return False
     except Exception as e:
         driver.save_screenshot("naukri_login_error.png")

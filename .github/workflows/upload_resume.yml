@@ -33,3 +33,13 @@ jobs:
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
       run: |
         python main.py
+
+    - name: Upload Screenshot Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: failure-screenshots
+        path: |
+           *.png
+           logs/*.log
+        if-no-files-found: ignore

@@ -84,14 +84,14 @@ def human_type(element, text: str) -> None:
         time.sleep(random.uniform(config.KEYSTROKE_MIN, config.KEYSTROKE_MAX))
 
 
-def wait_and_find(driver, by: By, value: str, timeout: int = 15):
+def wait_and_find(driver, by: By, value: str, timeout: int = 30):
     """Wait for an element to be present and return it."""
     return WebDriverWait(driver, timeout).until(
         EC.presence_of_element_located((by, value))
     )
 
 
-def wait_and_click(driver, by: By, value: str, timeout: int = 15):
+def wait_and_click(driver, by: By, value: str, timeout: int = 30):
     """Wait for an element to be clickable and click it."""
     element = WebDriverWait(driver, timeout).until(
         EC.element_to_be_clickable((by, value))
