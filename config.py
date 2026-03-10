@@ -22,12 +22,6 @@ NAUKRI_PASSWORD = os.getenv("NAUKRI_PASSWORD", "")
 NAUKRI_LOGIN_URL = "https://www.naukri.com/nlogin/login"
 NAUKRI_PROFILE_URL = "https://www.naukri.com/mnjuser/profile"
 
-# ── Indeed ─────────────────────────────────────────────────
-INDEED_EMAIL = os.getenv("INDEED_EMAIL", "")
-INDEED_PASSWORD = os.getenv("INDEED_PASSWORD", "")
-INDEED_LOGIN_URL = "https://secure.indeed.com/auth"
-INDEED_RESUME_URL = "https://my.indeed.com/resume"
-
 # ── Anti-Detection Delays (seconds) ───────────────────────
 MIN_DELAY = 2          # minimum random delay between actions
 MAX_DELAY = 5          # maximum random delay between actions

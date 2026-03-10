@@ -16,7 +16,6 @@ from pathlib import Path
 import config
 from resume_renamer import rename_resume, cleanup_old_resumes
 from naukri_updater import run_naukri
-from indeed_updater import run_indeed
 
 
 def setup_logging() -> None:
@@ -40,9 +39,7 @@ def main() -> None:
 
     args = sys.argv[1:]
     dry_run = "--dry-run" in args
-    run_naukri_flag = "--naukri" in args
-    run_indeed_flag = "--indeed" in args
-    run_all = not run_naukri_flag and not run_indeed_flag  # default: both
+    run_naukri_flag = True  # Always run Naukri unless we add more sites later
 
     logger.info("=" * 60)
     logger.info("🚀  RESUME UPLOAD AUTOMATION STARTED")
@@ -66,14 +63,7 @@ def main() -> None:
         logger.info("─── NAUKRI.COM ──────────────────────────────")
         naukri_ok = run_naukri(resume_path, dry_run=dry_run)
 
-    # ── Step 3: Run Indeed ─────────────────────────────────────
-    indeed_ok = True
-    if run_all or run_indeed_flag:
-        logger.info("")
-        logger.info("─── INDEED.COM ─────────────────────────────")
-        indeed_ok = run_indeed(resume_path, dry_run=dry_run)
-
-    # ── Step 4: Cleanup old resumes ────────────────────────────
+    # ── Step 3: Cleanup old resumes ────────────────────────────
     cleanup_old_resumes(keep_latest=3)
 
     # ── Summary ────────────────────────────────────────────────
@@ -82,17 +72,13 @@ def main() -> None:
     logger.info("📊  RESULTS SUMMARY")
     logger.info("-" * 60)
 
-    if run_all or run_naukri_flag:
+    if run_naukri_flag:
         status = "✅ SUCCESS" if naukri_ok else "❌ FAILED"
         logger.info(f"   Naukri  : {status}")
 
-    if run_all or run_indeed_flag:
-        status = "✅ SUCCESS" if indeed_ok else "❌ FAILED"
-        logger.info(f"   Indeed  : {status}")
-
     logger.info("=" * 60)
 
-    if not naukri_ok or not indeed_ok:
+    if not naukri_ok:
         logger.warning("⚠️ Some tasks failed. Check logs for details.")
         sys.exit(1)
 

@@ -31,7 +31,5 @@ jobs:
       env:
         NAUKRI_EMAIL: ${{ secrets.NAUKRI_EMAIL }}
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
-        INDEED_EMAIL: ${{ secrets.INDEED_EMAIL }}
-        INDEED_PASSWORD: ${{ secrets.INDEED_PASSWORD }}
       run: |
         python main.py
