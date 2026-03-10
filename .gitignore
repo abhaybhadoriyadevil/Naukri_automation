@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+*.log
+Abhay_Resume_*.pdf
+!Abhay__cv.pdf
+logs/
