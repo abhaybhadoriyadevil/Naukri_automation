@@ -58,7 +58,7 @@ def main() -> None:
 
     # ── Step 2: Run Naukri ─────────────────────────────────────
     naukri_ok = True
-    if run_all or run_naukri_flag:
+    if run_naukri_flag:
         logger.info("")
         logger.info("─── NAUKRI.COM ──────────────────────────────")
         naukri_ok = run_naukri(resume_path, dry_run=dry_run)
